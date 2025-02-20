@@ -168,3 +168,13 @@ jobs:
           cd frontend/e2e
           npm i
           npm run smoke
+
+  security-audit:
+    needs: build
+    runs-on: ububntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Check for security issue
+        run: cd backend && npm audit --audit-level=medium
